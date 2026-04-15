@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Project | Digital Empowerment for Rural Kenya</title>
+    <style>
+        :root {
+            --primary-green: #2c5e2e;
+            --deep-forest: #1f4521;
+            --accent-gold: #f9e0a8;
+            --soft-cream: #fefcf5;
+            --text-dark: #1e2a2e;
+            --text-muted: #4b6a3b;
+            --card-white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px; /* ensures fixed nav doesn't hide anchor targets */
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background-color: var(--soft-cream);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        nav {
+            background-color: var(--primary-green);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            color: var(--accent-gold);
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(44,94,46,0.9), rgba(44,94,46,0.9)), 
+                        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMjAgM2wxMCAxMC01IDUtMTAtMTB6Ii8+PC9zdmc+');
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 7rem 0;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.95;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-green);
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            background-color: var(--deep-forest);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary-green);
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            color: var(--primary-green);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .trust-item {
+            background: var(--card-white);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border-bottom: 4px solid var(--accent-gold);
+        }
+
+        .trust-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-green);
+            display: block;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-white);
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background: var(--card-white);
+            padding: 2rem;
+            border-radius: 24px;
+            font-style: italic;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .testimonial-author {
+            margin-top: 1rem;
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        .about-story {
+            max-width: 850px;
+            margin: 0 auto;
+            background: var(--card-white);
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+        }
+
+        .about-story p {
+            margin-bottom: 1.5rem;
+        }
+
+        .values-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .value-item {
+            background: #eef3e4;
+            padding: 1rem 1.5rem;
+            border-radius: 60px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--card-white);
+            margin-bottom: 1rem;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            display: none;
+            color: #555;
+            border-top: 1px solid #eee;
+        }
+
+        .faq-answer.show {
+            display: block;
+        }
+
+        .cta-banner {
+            background-color: var(--primary-green);
+            color: white;
+            text-align: center;
+            padding: 3rem 1.5rem;
+            border-radius: 32px;
+            margin: 2rem 0;
+        }
+
+        .cta-banner .btn-outline {
+            border-color: white;
+            color: white;
+        }
+
+        .cta-banner .btn-outline:hover {
+            background: white;
+            color: var(--primary-green);
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-family: inherit;
+        }
+
+        footer {
+            background: var(--text-dark);
+            color: #999;
+            text-align: center;
+            padding: 4rem 0;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; gap: 1rem; }
+            .hero { padding: 4rem 0; }
+            .hero-btns .btn { width: 100%; margin: 0.3rem 0; }
+            .btn-outline { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<nav aria-label="Main Navigation">
+    <div class="container nav-container">
+        <a href="#" class="logo">🌱 NEXUS PROJECT</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Our Story</a></li>
+            <li><a href="#curriculum">Curriculum</a></li>
+            <li><a href="#portfolios">Portfolios</a></li>
+            <li><a href="#impact">Impact</a></li>
+            <li><a href="#get-involved">Get Involved</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main>
+    <!-- Hero section with explicit ID for home anchor -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Cultivating Digital Futures:<br>From Tea Farms to Global Creation</h1>
+            <p>Empowering the youth of Bureti, Kenya, with high-demand digital skills. Our six-month immersive program launches in April 2027.</p>
+            <div class="hero-btns">
+                <a href="#about" class="btn">Learn Our Vision</a>
+                <a href="#get-involved" class="btn btn-outline">Support a Student</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Measurable Hope</h2>
+            <p class="section-sub">We aren't just teaching code; we are building a bridge to economic independence.</p>
+            <div class="trust-grid">
+                <article class="trust-item">
+                    <span class="trust-number">30</span>
+                    <p>First Cohort Students</p>
+                </article>
+                <article class="trust-item">
+                    <span class="trust-number">100%</span>
+                    <p>Tuition-Free Access</p>
+                </article>
+                <article class="trust-item">
+                    <span class="trust-number">24</span>
+                    <p>Weeks of Mentorship</p>
+                </article>
+                <article class="trust-item">
+                    <span class="trust-number">10+</span>
+                    <p>Live Portfolios</p>
+                </article>
+            </div>
+            <!-- Fixed: replaced <footer> with <cite> to avoid semantic confusion -->
+            <blockquote style="text-align:center; font-style:italic; border-left: 4px solid var(--accent-gold); padding: 1rem; background: #fff; max-width: 700px; margin: 0 auto;">
+                "This project will change lives. Weldon Rono’s dedication to our youth is a vital spark for Bureti." 
+                <cite style="display:block; margin-top:0.5rem; font-style:normal; font-weight:bold;">— John Langat, Assistant Chief</cite>
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- Services / Curriculum Section -->
+    <section id="curriculum" style="background-color: #f0f4f0;">
+        <div class="container">
+            <h2 class="section-title">What We Build</h2>
+            <p class="section-sub">A comprehensive curriculum designed for local relevance and global standards.</p>
+            <div class="cards">
+                <div class="card">
+                    <span class="card-icon" aria-hidden="true">📘</span>
+                    <h3>Digital Literacy</h3>
+                    <p>Mastering hardware, professional communication, and cybersecurity basics. The foundation for all digital work.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon" aria-hidden="true">💻</span>
+                    <h3>Web Engineering</h3>
+                    <p>Modern HTML5, CSS3, and responsive design. Students graduate with a live, professional portfolio.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon" aria-hidden="true">🌍</span>
+                    <h3>Freelance Economy</h3>
+                    <p>Global marketplace navigation (Upwork/Fiverr) and financial literacy, including M-Pesa integration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Voices from the Community</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">“I have never used a computer, but I want to learn. Nexus gives me hope.”<div class="testimonial-author">— Mary Chepkurui, prospective participant</div></div>
+                <div class="testimonial">“My son is eager to join. We need these skills in our village.”<div class="testimonial-author">— Mr. Kipruto, parent</div></div>
+                <div class="testimonial">“Nexus will fill a critical gap. I look forward to seeing our youth become employable.”<div class="testimonial-author">— John Langat, Assistant Chief</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section (Story, Mission, Values) -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Our Story</h2>
+            <div class="about-story">
+                <p>I'm Weldon Rono, a tea farmer in Buteti, I have seen the untapped brilliance of our youth. They possess the ambition buy lack the digital tools to complete in a globalized economy.</p>
+                <p>Nexus was born in the AIC Chemwonjo Church hall—not as a corporate initiative, but as a neighborly promise. We believe that technology should serve our culture, not replace it.</p>
+                
+                <h3 style="margin: 2rem 0 0.5rem; color: var(--primary-green);">Our Mission</h3>
+                <p>To equip rural youth in Bureti with future‑ready digital skills, real‑world projects, and a pathway to dignified work – without leaving their community or their culture behind.</p>
+                
+                <h3 style="margin: 2rem 0 1rem; color: var(--primary-green);">Our Values</h3>
+                <div class="values-list">
+                    <span class="value-item">🌱 Rooted – technology serves our way of life</span>
+                    <span class="value-item">🛠️ Hands‑on – build something real every session</span>
+                    <span class="value-item">👥 Peer‑led – youth make the decisions</span>
+                </div>
+
+                <h3 style="margin: 2rem 0 1rem; color: var(--primary-green);">The Roadmap</h3>
+                <div style="border-left: 2px solid var(--accent-gold); padding-left: 1.5rem;">
+                    <p><strong>2026:</strong> Community outreach and infrastructure setup.</p>
+                    <p><strong>Early 2027:</strong> Application window opens for the first cohort.</p>
+                    <p><strong>April 2027:</strong> Official Program Launch.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolios Section -->
+    <section id="portfolios" style="background-color: #f9f7f0;">
+        <div class="container">
+            <h2 class="section-title">Participant Portfolios</h2>
+            <p class="section-sub">This page will showcase the work of our first cohort after April 2027. Below is a preview of what’s coming.</p>
+            <div class="cards">
+                <div class="card">
+                    <span class="card-icon">📁</span>
+                    <h3>Sample Website</h3>
+                    <p>A student‑built tea farm directory – coming soon.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">📊</span>
+                    <h3>Data Tracker</h3>
+                    <p>Automated spreadsheet for harvest records.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🎥</span>
+                    <h3>60‑Second Pitch</h3>
+                    <p>Graduate video introductions to employers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact">
+        <div class="container">
+            <h2 class="section-title">Expected Impact</h2>
+            <div class="trust-grid">
+                <div class="trust-item">📈 30 youth skilled in digital tools</div>
+                <div class="trust-item">💼 70% aim for freelance income</div>
+                <div class="trust-item">🏆 Community‑led graduation Expo</div>
+            </div>
+            <p style="text-align:center">We will measure progress through pre/post surveys, portfolio reviews, and employer connections.</p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item"><div class="faq-question">📌 Who can join Nexus? <span>+</span></div><div class="faq-answer">Youth aged 14–24 from Bureti, especially tea‑farming households. No prior experience needed. Applications open in early 2027.</div></div>
+                <div class="faq-item"><div class="faq-question">💰 Is there a cost? <span>+</span></div><div class="faq-answer">No. The program is 100% free for participants, thanks to grants and community support.</div></div>
+                <div class="faq-item"><div class="faq-question">⏳ How long is the program? <span>+</span></div><div class="faq-answer">6 months (24 sessions, 2 hours per week), starting April 2027.</div></div>
+                <div class="faq-item"><div class="faq-question">🎓 Do I get a certificate? <span>+</span></div><div class="faq-answer">Yes – a “Certificate of Digital Mastery” at the graduation Expo.</div></div>
+                <div class="faq-item"><div class="faq-question">🖥️ Can I join if I have no laptop? <span>+</span></div><div class="faq-answer">Yes – shared laptops will be provided during sessions.</div></div>
+                <div class="faq-item"><div class="faq-question">📝 How do I apply? <span>+</span></div><div class="faq-answer">Application details will be posted here before April 2027. For now, contact us to express interest.</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <div class="container">
+        <div class="cta-banner">
+            <h3>Be part of the first cohort – launching April 2027</h3>
+            <p>Support our preparation or register your interest today.</p>
+            <a href="#get-involved" class="btn" style="background:white; color:#2c5e2e;">Notify Me When Applications Open</a>
+            <a href="#get-involved" class="btn btn-outline" style="border-color:white; color:white;">Donate via M‑Pesa</a>
+        </div>
+    </div>
+
+    <!-- Get Involved Section -->
+    <section id="get-involved">
+        <div class="container">
+            <h2 class="section-title">Get Involved</h2>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                <div><h3>📢 For Employers</h3><p>Hire a future Nexus graduate. Skills: HTML/CSS, spreadsheets, video editing, freelance readiness.</p><a href="#contact" class="btn btn-outline" style="border-color: var(--primary-green); color: var(--primary-green);">Contact us</a></div>
+                <div><h3>❤️ Donate</h3><p>€10 = USB drive, €50 = laptop rental for a month. M‑Pesa: 0727682866 (Weldon Rono).</p></div>
+                <div><h3>📝 Join Nexus 2027</h3><p>Register your interest for the April 2027 cohort. Applications open early 2027.</p><a href="#contact" class="btn">Notify Me</a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Connect With Us</h2>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
+                <div>
+                    <p><strong>Email:</strong> <a href="mailto:ronokibetw@gmail.com">ronokibetw@gmail.com</a></p>
+                    <p><strong>Phone:</strong> <a href="tel:+254727682866">0727682866</a></p>
+                    <p><strong>Location:</strong> AIC Chemwonjo Church, Bureti, Kericho, Kenya</p>
+                    <p><em>We are currently in the planning phase. Reach out anytime.</em></p>
+                </div>
+                <!-- Replace the form action with your own Formspree endpoint if needed -->
+                <form class="contact-form" action="https://formspree.io/f/xqapgvwa" method="POST">
+                    <label for="user-name">Full Name</label>
+                    <input type="text" id="user-name" name="name" required>
+                    
+                    <label for="user-email">Email Address</label>
+                    <input type="email" id="user-email" name="email" required>
+                    
+                    <label for="user-msg">Message</label>
+                    <textarea id="user-msg" name="message" rows="4"></textarea>
+                    
+                    <button type="submit" class="btn">Send Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>© <span id="currentYear"></span> Nexus Project. Launching April 2027.</p>
+        <p>Built with purpose for Bureti, Kenya.</p>
+    </div>
+</footer>
+
+<script>
+    // Dynamic footer year
+    document.getElementById('currentYear').innerText = new Date().getFullYear();
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const answer = button.nextElementSibling;
+            const isOpen = answer.classList.contains('show');
+            
+            // Close all other answers
+            document.querySelectorAll('.faq-answer').forEach(el => el.classList.remove('show'));
+            document.querySelectorAll('.faq-question span').forEach(el => el.innerText = '+');
+            
+            if (!isOpen) {
+                answer.classList.add('show');
+                button.querySelector('span').innerText = '−';
+            }
+        });
+    });
+</script>
+</body>
+</html>
